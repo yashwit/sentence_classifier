@@ -17,12 +17,11 @@ This is a simple Python program using PyTorch to classify short sentences into *
 * Python 3.x
 * PyTorch
 * Hugging Face transformers
-* Torch Utils
 
-Install PyTorch via pip:
+Install requirements.txt via pip:
 
 ```bash
-pip install torch
+pip install -r requirements.txt
 ```
 
 ## Usage
