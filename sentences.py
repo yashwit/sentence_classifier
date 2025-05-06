@@ -170,11 +170,15 @@ class SentenceClassifier(torch.nn.Module):
     return sentence_embeddings, class_logits, sentiment_logits
 
 
+# TASK 4: a more ideal training method would be batch training as it provides better generalization, handles multiple tasks better, and the
+# computation is faster and more efficient. But for a small dataset, stochastic training works well
 """
-Trains the model on the given data
+Trains the model on the given data as it uses 
 """
 def train(model, data):
   
+  print('Training...')
+
   # For richer datasets, full fine-tuning often yields better results
   for param in model.transformer.parameters():
     param.requires_grad = True
@@ -226,10 +230,10 @@ def predict(model, sentences):
     predicted_class_labels = [class_labels[i] for i in predicted_class_ids]
     predicted_sentiment_ids = torch.argmax(sentiment_logits, dim=1)
     predicted_sentiment_labels = [sentiment_labels[i] for i in predicted_sentiment_ids]
-    print(predicted_class_ids, predicted_class_labels)
 
     print(f"Shape of embeddings: {embeddings.shape}")
     
+    # embeddings are of length 768. fixed size of 20 is printed out
     for i, embedding in enumerate(embeddings):
       print(f"Sentence: '{sentences[i] if type(sentences) == list else sentences}'")
       print(f"Embedding: {embedding[:20]}")
@@ -247,11 +251,13 @@ def main():
 
   train(model, training_data)
   
-  sentences = ['I love LLMs!', 'Is this a sentence classifier?', 'LLMs are typically built on a type of neural network called a Transformer.', 'The weather outside is dreary']
+  sentences = ['I love LLMs!', 
+               'Is this a sentence classifier?', 
+               'LLMs are typically built on a type of neural network called a Transformer.', 
+               'The weather outside is dreary']
 
   predict(model, sentences)
-
-    
+  
 if __name__ =='__main__':
     main()
 
