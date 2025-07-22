@@ -33,6 +33,3 @@ python sentences.py
 ```
 
 You can modify the `main()` function to test with your own sentences.
-
-**Task 3 attached in task_3.pdf**
-
