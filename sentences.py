@@ -9,12 +9,12 @@ model_name = "bert-base-uncased"
 # 5 epochs gives us an avergae total loss of 0.25 which is ideal for two classifiers
 epochs = 5
 
-# TASK A: Sentence Classification. Classes: "Informative", "Question", "Statement", "Exclamation"
+# Sentence Classification. Classes: "Informative", "Question", "Statement", "Exclamation"
 class_labels = ['Informative', 'Question', 'Statement', 'Exclamation']
 num_classes = len(class_labels)
 class_id = {label: idx for idx, label in enumerate(class_labels)}
 
-# TASK B: Sentiment Analysis. Labels: "Positive", "Negative", "Neutral"
+# Sentiment Analysis. Labels: "Positive", "Negative", "Neutral"
 sentiment_labels = ['Positive', 'Negative', 'Neutral']
 num_sentiments = len(sentiment_labels)
 sentiment_id = {label: idx for idx, label in enumerate(sentiment_labels)}
@@ -169,11 +169,8 @@ class SentenceClassifier(torch.nn.Module):
     sentiment_logits = self.sentiment(sentence_embeddings)
     return sentence_embeddings, class_logits, sentiment_logits
 
-
-# TASK 4: a more ideal training method would be batch training as it provides better generalization, handles multiple tasks better, and the
-# computation is faster and more efficient. But for a small dataset, stochastic training works well
 """
-Trains the model on the given data as it uses 
+Trains the model on the given data as it uses (stoichastic training)
 """
 def train(model, data):
   
@@ -260,4 +257,4 @@ def main():
   
 if __name__ =='__main__':
     main()
-
+          
